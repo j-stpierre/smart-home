@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"log"
-	"time"
-
 	amqp "github.com/rabbitmq/amqp091-go"
+	"log"
+	"os"
+	"time"
 )
 
 func failOnError(err error, msg string) {
@@ -15,7 +15,11 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	port := os.Getenv("RABBITMQPORT")
+	username := os.Getenv("RABBITMQUSER")
+	password := os.Getenv("RABBITMQPASS")
+
+	conn, err := amqp.Dial("amqp://" + username + ":" + password + "@localhost:" + port + "/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 
@@ -33,6 +37,9 @@ func main() {
 		false,    // mandatory
 		false,    // immediate
 		amqp.Publishing{
+			Headers: amqp.Table{
+				"source": "bindetector",
+			},
 			ContentType: "text/plain",
 			Body:        []byte(body),
 		})
