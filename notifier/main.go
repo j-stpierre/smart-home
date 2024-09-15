@@ -1,9 +1,9 @@
 package main
 
 import (
-	"log"
-
 	amqp "github.com/rabbitmq/amqp091-go"
+	"log"
+	"os"
 )
 
 func failOnError(err error, msg string) {
@@ -13,7 +13,11 @@ func failOnError(err error, msg string) {
 }
 
 func main() {
-	conn, err := amqp.Dial("amqp://guest:guest@localhost:5672/")
+	port := os.Getenv("RABBITMQPORT")
+	username := os.Getenv("RABBITMQUSER")
+	password := os.Getenv("RABBITMQPASS")
+
+	conn, err := amqp.Dial("amqp://" + username + ":" + password + "@localhost:" + port + "/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 
@@ -55,10 +59,18 @@ func main() {
 
 	go func() {
 		for d := range msgs {
-			log.Printf(" [x] %s", d.Body)
+			triage(d)
 		}
 	}()
 
-	log.Printf(" [*] Waiting for logs. To exit press CTRL+C")
+	log.Printf(" [*] Waiting for events. To exit press CTRL+C")
 	<-forever
+}
+
+func triage(message amqp.Delivery) {
+	if message.Headers["source"] == "bindetector" {
+		log.Printf("Message %s, was sent to slack", message.Body)
+	} else {
+		log.Printf("Message %s, was ignored", message.Body)
+	}
 }
