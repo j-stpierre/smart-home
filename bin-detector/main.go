@@ -30,7 +30,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	body := "Test"
+	body := "No bin detected at curb"
 	err = ch.PublishWithContext(ctx,
 		"events", // exchange
 		"",       // routing key
