@@ -1,0 +1,6 @@
+.DS_Store
+
+runs/
+
+bin-detector/bindetector/
+bin-detector/yolov8m.pt

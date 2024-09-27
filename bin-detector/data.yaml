@@ -1,0 +1,5 @@
+train: /Users/james/Dropbox/Projects/sensors/smart-home/bin-detector/pictures/train
+val: /Users/james/Dropbox/Projects/sensors/smart-home/bin-detector/pictures/val
+
+nc: 1  # Number of classes (adjust according to your dataset)
+names: ['bin']  # List of class names
