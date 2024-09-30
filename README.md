@@ -9,5 +9,14 @@ Be sure to add `cgroup_memory=1 cgroup_enable=memory` to the end of `/boot/firmw
 Install RabbitMQ with the RabbitMQ Operator as seen here: https://www.rabbitmq.com/kubernetes/operator/quickstart-operator
 
 ### Notifier Service
+Ensure the following environment variables are set:
+- SLACKWEBHOOK
+- RABBITMQPORT
+- RABBITMQPASS
+- RABBITMQUSER
 
-### Bin Detector Dervice
+### Bin Detector Service
+Ensure the following enviornment variables are set:
+- RABBITMQPORT
+- RABBITMQPASS
+- RABBITMQUSER

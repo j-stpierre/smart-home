@@ -5,13 +5,7 @@ import (
 	"notifier/config"
 	"notifier/internal/rabbitmq"
 	"notifier/internal/triage"
-	"os"
 )
-
-var port = os.Getenv("RABBITMQPORT")
-var username = os.Getenv("RABBITMQUSER")
-var password = os.Getenv("RABBITMQPASS")
-var slackwebhook = os.Getenv("SLACKWEBHOOK")
 
 func main() {
 
