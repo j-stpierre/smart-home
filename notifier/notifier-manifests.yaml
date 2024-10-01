@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notifier-deployment
+  labels:
+    app: notifier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notifier
+  template:
+    metadata:
+      labels:
+        app: notifier
+    spec:
+      containers:
+      - name: notifier
+        image: jstpierre24/smart-home:notifier-v1.0.0
+        imagePullPolicy: Always
+        env:
+        - name: SLACKWEBHOOK
+          valueFrom:
+            secretKeyRef:
+              name: slackwebhook
+              key: slackwebhook
+        - name: RABBITMQPORT
+          value: "5672"
+        - name: RABBITMQPASS
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmqpass
+              key: rabbitmqpass
+        - name: RABBITMQUSER 
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmquser
+              key: rabbitmquser
+        - name: RABBITMQDOMAIN
+          value: "hello-world.default.svc.cluster.local"
+      imagePullSecrets:
+      - name: my-registry-secret
