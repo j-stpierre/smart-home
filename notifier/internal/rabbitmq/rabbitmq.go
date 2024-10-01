@@ -22,7 +22,7 @@ type RabbitMQ struct {
 
 func NewConsumer(cfg *config.Config) (*RabbitMQ, error) {
 
-	conn, err := amqp.Dial("amqp://" + cfg.RABBITMQUSER + ":" + cfg.RABBITMQPASS + "@localhost:" + cfg.RABBITMQPORT + "/")
+	conn, err := amqp.Dial("amqp://" + cfg.RABBITMQUSER + ":" + cfg.RABBITMQPASS + "@" + cfg.RABBITMQDOMAIN + ":" + cfg.RABBITMQPORT + "/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 
 	ch, err := conn.Channel()
