@@ -37,6 +37,6 @@ spec:
               name: rabbitmquser
               key: rabbitmquser
         - name: RABBITMQDOMAIN
-          value: "hello-world.default.svc.cluster.local"
+          value: "rabbitmq.rabbitmq.svc.cluster.local"
       imagePullSecrets:
       - name: my-registry-secret

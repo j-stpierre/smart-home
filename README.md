@@ -21,7 +21,19 @@ imagePullSecrets:
 ```
 
 ### RabbitMQ
+Install RabbitMQ in a new namespace
+`kubectl create namespace rabbitmq`
+
 Install RabbitMQ with the RabbitMQ Operator as seen here: https://www.rabbitmq.com/kubernetes/operator/quickstart-operator
+
+`kubectl apply -f manifests/rabbitmq/rabbitmq.yaml`
+```
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: rabbitmq
+```
+
 
 ### Notifier Service
 Ensure the following environment variables are set:
