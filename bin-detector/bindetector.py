@@ -5,7 +5,7 @@ import cv2
 model = YOLO('yolov8m_bin_trained.pt')  # Use 'yolov8n.pt' for nano model
 
 # Load an image
-image_path = 'pictures/captures/garbage-day.png'
+image_path = 'pictures/captures/no-bin-day.png'
 image = cv2.imread(image_path)
 
 # Run inference

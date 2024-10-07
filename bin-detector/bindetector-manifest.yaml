@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: bindetector-cronjob
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: bindetector
+            image: jstpierre24/smart-home:bindetector-v1.0.0
+            imagePullPolicy: Always
+            env:
+            - name: RABBITMQPORT
+              value: "5672"
+            - name: RABBITMQPASS
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmqpass
+                  key: rabbitmqpass
+            - name: RABBITMQUSER 
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmquser
+                  key: rabbitmquser
+            - name: RABBITMQDOMAIN
+            value: "rabbitmq.rabbitmq.svc.cluster.local"
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: my-registry-secret
