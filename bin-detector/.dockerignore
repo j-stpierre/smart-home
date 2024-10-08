@@ -1,1 +1,4 @@
 bindetector/
+pictures/train/
+pictures/val/
+yolov8m.pt

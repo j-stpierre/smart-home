@@ -1,4 +1,4 @@
-FROM python:3.11.10
+FROM python:3.11.10-slim
 
 # Install build dependencies
 RUN apt-get update && \
