@@ -3,14 +3,14 @@ kind: CronJob
 metadata:
   name: bindetector-cronjob
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "0 * * * *"
   jobTemplate:
     spec:
       template:
         spec:
           containers:
           - name: bindetector
-            image: jstpierre24/smart-home:bindetector-v1.0.0
+            image: jstpierre24/smart-home:bindetector-v1.0.2
             imagePullPolicy: Always
             env:
             - name: RABBITMQPORT
@@ -26,7 +26,8 @@ spec:
                   name: rabbitmquser
                   key: rabbitmquser
             - name: RABBITMQDOMAIN
-            value: "rabbitmq.rabbitmq.svc.cluster.local"
+              value: "rabbitmq.rabbitmq.svc.cluster.local"
           restartPolicy: OnFailure
           imagePullSecrets:
           - name: my-registry-secret
+  successfulJobsHistoryLimit: 1
