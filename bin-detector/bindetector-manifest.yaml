@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: bindetector-cronjob
 spec:
-  schedule: "0 * * * *"
+  schedule: "0 20 * * *"
   jobTemplate:
     spec:
       template:

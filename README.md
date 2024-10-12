@@ -52,3 +52,12 @@ Ensure the following enviornment variables are set:
 - RABBITMQPORT
 - RABBITMQPASS
 - RABBITMQUSER
+
+### ESP32-CAM
+Upload code from camera foler to esp32.
+Requires a sercrets.h file which includes the following variables
+```
+#define WIFI_SSID
+#define WIFI_PASSWORD
+#define BEARER_TOKEN
+```
