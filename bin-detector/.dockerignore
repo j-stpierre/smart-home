@@ -1,4 +1,5 @@
 bindetector/
 pictures/train/
 pictures/val/
+pictures/captures/
 yolov8m.pt
