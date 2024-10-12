@@ -105,7 +105,7 @@ void setup() {
   setupCamera();
 
   // Define route for capturing images
-  server.on("/", HTTP_GET, handle_capture);
+  server.on("/capture", HTTP_GET, handle_capture);
 
   // Start the server
   server.begin();
