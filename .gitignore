@@ -3,6 +3,6 @@
 runs/
 
 bin-detector/bindetector/
-bin-detector/yolov8m.pti
+bin-detector/yolov8m.pt
 
 camera/camera_secrets.h
