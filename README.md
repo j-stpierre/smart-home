@@ -52,6 +52,8 @@ Ensure the following enviornment variables are set:
 - RABBITMQPORT
 - RABBITMQPASS
 - RABBITMQUSER
+- CAMERAURL
+- CAMERATOKEN
 
 ### ESP32-CAM
 Upload code from camera foler to esp32.
