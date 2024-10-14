@@ -1,14 +1,15 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: bindetector-cronjob
+  name: bindetector-cronjob-mwf
 spec:
-  schedule: "0 20 * * *"
+  successfulJobsHistoryLimit: 1
+  schedule: "30 6 * * 1,3,5"
   jobTemplate:
     spec:
       template:
         spec:
-          containers:
+          containers: 
           - name: bindetector
             image: jstpierre24/smart-home:bindetector-v1.1.1
             imagePullPolicy: Always
@@ -40,4 +41,3 @@ spec:
           restartPolicy: OnFailure
           imagePullSecrets:
           - name: my-registry-secret
-  successfulJobsHistoryLimit: 1
