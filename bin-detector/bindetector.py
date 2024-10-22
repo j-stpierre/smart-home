@@ -2,33 +2,45 @@ from ultralytics import YOLO
 import cv2
 import pika
 import os
-import requests
 
 RABBITMQHOST = os.environ["RABBITMQDOMAIN"]
 RABBITMQUSER = os.environ["RABBITMQUSER"]
 RABBITMQPASS = os.environ["RABBITMQPASS"]
 CAMERAURL = os.environ["CAMERAURL"]
-CAMERATOKEN = os.environ["CAMERATOKEN"]
+CAMERAAUTH = os.environ["CAMERAAUTH"]
 
 # Load YOLOv8 model
 model = YOLO("yolov8m_bin_trained.pt")
 
 # Get image from camera
-headers = {"Authorization": "Bearer " + CAMERATOKEN}
-response = requests.get(CAMERAURL, headers=headers)
+rtsp_url = "rtsp://" + CAMERAAUTH + "@" + CAMERAURL
 
-print(response.status_code)
+# Create a VideoCapture object
+cap = cv2.VideoCapture(rtsp_url)
 
-if response.status_code == 200:
-    with open("pictures/captures/captured_image.jpg", "wb") as file:
-        file.write(response.content)
-        print("Image successfully saved as 'captured_image.jpg'")
+# Check if the stream is opened successfully
+if not cap.isOpened():
+    print("Error: Could not open RTSP stream")
+else:
+    # Read a frame (snapshot)
+    ret, frame = cap.read()
 
-image_path = "pictures/captures/captured_image.jpg"
+    if ret:
+        cv2.imwrite("pictures/captures/snapshot.jpg", frame)
+    else:
+        print("Error: Could not retrieve frame")
+
+# Release the VideoCapture object
+cap.release()
+
+image_path = "pictures/captures/snapshot.jpg"
 image = cv2.imread(image_path)
 
+down_points = (640, 640)
+resized_down = cv2.resize(image, down_points, interpolation=cv2.INTER_LINEAR)
+
 # Run inference
-results = model(image)
+results = model(resized_down)
 result = results[0]
 
 bin_found = False

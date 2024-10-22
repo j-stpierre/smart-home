@@ -11,7 +11,7 @@ spec:
         spec:
           containers: 
           - name: bindetector
-            image: jstpierre24/smart-home:bindetector-v1.1.1
+            image: jstpierre24/smart-home:bindetector-v2.0.0
             imagePullPolicy: Always
             env:
             - name: RABBITMQPORT
@@ -28,16 +28,16 @@ spec:
                   key: rabbitmquser
             - name: RABBITMQDOMAIN
               value: "rabbitmq.rabbitmq.svc.cluster.local"
-            - name: CAMERAURL 
+            - name: CAMERAURL
               valueFrom:
                 secretKeyRef:
                   name: cameraurl
                   key: cameraurl
-            - name: CAMERATOKEN 
+            - name: CAMERAAUTH 
               valueFrom:
                 secretKeyRef:
-                  name: cameratoken
-                  key: cameratoken
+                  name: cameraauth
+                  key: cameraauth
           restartPolicy: OnFailure
           imagePullSecrets:
           - name: my-registry-secret
