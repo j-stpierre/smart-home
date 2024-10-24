@@ -52,8 +52,8 @@ Ensure the following enviornment variables are set:
 - RABBITMQPORT
 - RABBITMQPASS
 - RABBITMQUSER
-- CAMERAURL
-- CAMERATOKEN
+- CAMERAURL (ip:port/streampath)
+- CAMERAAUTH (username:password)
 
 To train, use roboflow to annotate the images and export the version as yolov8 which will give you a txt file per image
 
