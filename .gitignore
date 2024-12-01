@@ -4,6 +4,6 @@ runs/
 bin-detector/pictures/captures/
 
 bin-detector/bindetector/
-bin-detector/yolov8m.pt
+bin-detector/yolo*m.pt
 
 devices/*/*_secrets.h
