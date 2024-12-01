@@ -10,7 +10,7 @@ CAMERAURL = os.environ["CAMERAURL"]
 CAMERAAUTH = os.environ["CAMERAAUTH"]
 
 # Load YOLOv8 model
-model = YOLO("yolov8m_bin_trained.pt")
+model = YOLO("yolo11m_bin_trained.pt")
 
 # Get image from camera
 rtsp_url = "rtsp://" + CAMERAAUTH + "@" + CAMERAURL

@@ -57,6 +57,9 @@ Ensure the following enviornment variables are set:
 
 To train, use roboflow to annotate the images and export the version as yolov8 which will give you a txt file per image
 
+## Observability
+
+## Camera
 ### ESP32-CAM
 Upload code from camera foler to esp32.
 Requires a sercrets.h file which includes the following variables

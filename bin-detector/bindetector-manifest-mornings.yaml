@@ -11,7 +11,7 @@ spec:
         spec:
           containers: 
           - name: bindetector
-            image: jstpierre24/smart-home:bindetector-v2.0.2
+            image: jstpierre24/smart-home:bindetector-v2.1.0
             imagePullPolicy: Always
             env:
             - name: RABBITMQPORT

@@ -6,4 +6,4 @@ bin-detector/pictures/captures/
 bin-detector/bindetector/
 bin-detector/yolov8m.pt
 
-camera/camera_secrets.h
+devices/*/*_secrets.h
