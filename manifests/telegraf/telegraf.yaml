@@ -167,6 +167,7 @@ config:
         brokers: 
           - "amqp://telegrafuser:${RABBITMQ_PASSWORD}@rabbitmq.rabbitmq.svc.cluster.local:5672"
         exchange: "amqp.topic"
+        name_override: "sensor_data"
         queue: "telemetry"
         queue_durability: "durable"
         binding_key: "#"
