@@ -36,7 +36,8 @@ metadata:
 
 ### Influx DB
 Install InfluxDB by following the instructions here \
-https://docs.influxdata.com/platform/install-and-deploy/deploying/kubernetes/
+https://docs.influxdata.com/platform/install-and-deploy/deploying/kubernetes/ \
+Once in influxdb UI you can use the telegraf plugin section and select rabbitMQ, where it will create a sample config that needs to be translated into the manifest file under the config section, along with the influx token that gets created
 
 ### Telegraf
 Follow install instructions here \
