@@ -34,6 +34,16 @@ metadata:
   name: rabbitmq
 ```
 
+### Influx DB
+Install InfluxDB by following the instructions here \
+https://docs.influxdata.com/platform/install-and-deploy/deploying/kubernetes/
+
+### Telegraf
+Follow install instructions here \
+https://github.com/influxdata/helm-charts/tree/master/charts/telegraf \
+Use yaml config found in manifests/telegraf \
+Create a secret called `telegrafsecrets` which contains a secret for rabbitmq password as well as influxdb token
+
 
 ### Notifier Service
 Ensure the following environment variables are set:
@@ -59,12 +69,3 @@ To train, use roboflow to annotate the images and export the version as yolov8 w
 
 ## Observability
 
-## Camera
-### ESP32-CAM
-Upload code from camera foler to esp32.
-Requires a sercrets.h file which includes the following variables
-```
-#define WIFI_SSID
-#define WIFI_PASSWORD
-#define BEARER_TOKEN
-```
