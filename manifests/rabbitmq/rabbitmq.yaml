@@ -5,6 +5,8 @@ metadata:
   namespace: rabbitmq
 spec:
   replicas: 1
+  service:
+    type: NodePort
   rabbitmq:
       additionalPlugins:
         - rabbitmq_mqtt
