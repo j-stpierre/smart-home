@@ -45,6 +45,11 @@ https://github.com/influxdata/helm-charts/tree/master/charts/telegraf \
 Use yaml config found in manifests/telegraf \
 Create a secret called `telegrafsecrets` which contains a secret for rabbitmq password as well as influxdb token
 
+### Grafana For Telemetry
+Deploy following the instructions here \
+https://grafana.com/docs/grafana/latest/setup-grafana/installation/helm/ \
+Usings the manifest in the manifests/grafana section as values \
+To setup influx connector use Authorization header with Token <TOKEN> as the value and database is the bucket you want to query.
 
 ### Notifier Service
 Ensure the following environment variables are set:
