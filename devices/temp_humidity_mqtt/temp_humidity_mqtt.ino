@@ -152,7 +152,8 @@ void sendTelemetry() {
 
 const char* buildPayload() {
 
-  static char resp[256];
+
+  // static char resp[256];
   String deviceId = "F09E9E3B540C";
   float temperature = dht.readTemperature();
   float humidity = dht.readHumidity();
@@ -164,10 +165,18 @@ const char* buildPayload() {
   char timeString[30];
   strftime(timeString, sizeof(timeString), "%Y-%m-%d %H:%M:%S", currentTime);
 
+  StaticJsonDocument<200> doc;
+  doc["deviceId"] = "F09E9E3B540C";
+  doc["timestamp-device"] = timeString;
+
   if (isnan(temperature) || isnan(humidity)) {
-    return "ERROR";
+    doc["temperature"] = "error";
+    doc["humidity"] = "error";
   } else {
-    snprintf(resp, sizeof(resp), "{ \"deviceId\": \"%s\", \"timestamp-device\": %s, \"temperature\": %.2f, \"humidity\": %.2f }", deviceId, timeString, temperature, humidity);
-    return resp;
+    doc["temperature"] = temperature;
+    doc["humidity"] = humidity;
   }
+  static char resp[256];
+  serializeJson(doc, resp);
+  return resp;
 }
