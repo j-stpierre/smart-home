@@ -144,6 +144,17 @@ config:
             healthy: 1
             problem: 2
             critical: 3
+    - converter:
+        namepass:
+          - "amqp_consumer"
+        fields:
+          tag:
+            - "deviceId"
+          timestamp: 
+            - { key = "timestamp-device", format = "2006-01-02 15:04:05" }
+          float:
+            - "humidity"
+            - "temperature"
   outputs:
     - influxdb_v2:
         urls:
@@ -160,6 +171,10 @@ config:
         queue_durability: "durable"
         binding_key: "#"
         data_format: "json"
+        json_string_fields:
+          - "deviceId"
+          - "timestamp-device"
+
     - statsd:
         service_address: ":8125"
         percentiles:
