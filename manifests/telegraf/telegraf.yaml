@@ -145,8 +145,6 @@ config:
             problem: 2
             critical: 3
     - converter:
-        namepass:
-          - "amqp_consumer"
         fields:
           tag:
             - "deviceId"
